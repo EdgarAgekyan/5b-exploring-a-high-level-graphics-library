@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
 // import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
+
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
 // let objLoader;
 // {
 //   objLoader = new OBJLoader();
@@ -21,7 +24,7 @@ import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
   });
 }
 
-let renderer, cube, scene, camera, cubes, geometry, loader;
+let renderer, cube, scene, camera, cubes, geometry, loader, controls;
 
 function main() {
     const canvas = document.querySelector('#c');
@@ -38,6 +41,8 @@ function main() {
 
     camera.position.set(0, 0, 4);
     camera.lookAt(0, 0, 0);
+
+    controls = new OrbitControls(camera, renderer.domElement);
 
 
     scene = new THREE.Scene();
@@ -104,6 +109,7 @@ function main() {
 
 
 function render(time) {
+  controls.update();
   time *= 0.001;  // convert time to seconds
  
   // cube.rotation.x = time;
