@@ -12,23 +12,124 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 //     scene.add(root);
 //   });
 // }
-{
+
+// I was originally going to repeat the same code for each object.
+// However, I realized I can just make a basic helper function to get the
+// needed data for displaying each object.
+// I used ChatGPT to help me realize this but this code is my work.
+
+function addModel(objFile, mtlFile, scale, position, rotation) {
   const objLoader = new OBJLoader();
   const mtlLoader = new MTLLoader();
-  mtlLoader.load('resources/models/book/book.mtl', (mtl) => {
+  mtlLoader.load(mtlFile, (mtl) => {
     mtl.preload();
     objLoader.setMaterials(mtl);
-    objLoader.load('resources/models/book/book.obj', (root) => {
+    objLoader.load(objFile, (root) => {
+      root.rotation.set(rotation[0], rotation[1], rotation[2]);
+      root.scale.set(scale[0], scale[1], scale[2]);
+      root.position.set(position[0], position[1], position[2]);
       scene.add(root);
     });
   });
 }
 
+// The holder of books!!!
+addModel(
+  'resources/models/book/book.obj',
+  'resources/models/book/book.mtl',
+  [1,1,1],
+  [0,0,0],
+  [0, 0, 0],
+);
+
+// Road
+addModel(
+  'resources/models/cottage/road.obj',
+  'resources/models/cottage/road.mtl',
+  [.2,.1,.1],
+  [0,0,-12],
+  [0, 0, 0],
+);
+
+// Lamp 1
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [18,7,-6],
+  [0, 0, 0],
+);
+
+// Lamp 2
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [0,7,-6],
+  [0, 0, 0],
+);
+
+// Lamp 3
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [-18,7,-6],
+  [0, 0, 0],
+);
+
+
+// Lamp4
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [18,7,-17],
+  [0, 3.14, 0],
+);
+
+// Lamp 5
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [0,7,-17],
+  [0, 3.14, 0],
+);
+
+// Lamp 6
+addModel(
+  'resources/models/lamp/model.obj',
+  'resources/models/lamp/materials.mtl',
+  [3,3,3],
+  [-18,7,-17],
+  [0, 3.14, 0],
+);
+
+
+
+// {
+//   const objLoader = new OBJLoader();
+//   const mtlLoader = new MTLLoader();
+//   mtlLoader.load('resources/models/book/book.mtl', (mtl) => {
+//     mtl.preload();
+//     objLoader.setMaterials(mtl);
+//     objLoader.load('resources/models/book/book.obj', (root) => {
+//       scene.add(root);
+//     });
+//   });
+// }
+
 let renderer, cube, scene, camera, cubes, geometry, loader, controls;
 
 function main() {
   const canvas = document.querySelector('#c');
-  renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+  // renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    canvas,
+    alpha: true,
+  });
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const fov = 75;
@@ -52,7 +153,10 @@ function main() {
   const planeSize = 40;
 
   loader = new THREE.TextureLoader();
-  const texture = loader.load('resources/images/checker.png');
+
+
+  
+  var texture = loader.load('resources/images/grass.png');
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.magFilter = THREE.NearestFilter;
@@ -69,24 +173,24 @@ function main() {
   mesh.rotation.x = Math.PI * -.5;
   scene.add(mesh);
 
-  {
-    const cubeSize = 4;
-    const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-    const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
-    const mesh = new THREE.Mesh(cubeGeo, cubeMat);
-    mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
-    scene.add(mesh);
-  }
-  {
-    const sphereRadius = 3;
-    const sphereWidthDivisions = 32;
-    const sphereHeightDivisions = 16;
-    const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
-    const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
-    const mesh = new THREE.Mesh(sphereGeo, sphereMat);
-    mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
-    scene.add(mesh);
-  }
+  // {
+  //   const cubeSize = 4;
+  //   const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+  //   const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+  //   const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  //   mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+  //   scene.add(mesh);
+  // }
+  // {
+  //   const sphereRadius = 3;
+  //   const sphereWidthDivisions = 32;
+  //   const sphereHeightDivisions = 16;
+  //   const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  //   const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
+  //   const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+  //   mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+  //   scene.add(mesh);
+  // }
 
   // // const color = 0xFFFFFF;
   // const skyColor = 0xB1E1FF;  // light blue
@@ -97,19 +201,85 @@ function main() {
   // scene.add(light);
 
   // Directional Light
-  const color = 0xFFFFFF;
-  const intensity = 1;
-  const light = new THREE.DirectionalLight(color, intensity);
-  light.position.set(0, 10, 0);
-  light.target.position.set(-5, 0, 0);
+  // const color = 0xFFFFFF;
+  // const intensity = 1;
+  // const light = new THREE.DirectionalLight(color, intensity);
+  // light.position.set(0, 10, 0);
+  // light.target.position.set(-5, 0, 0);
+  // scene.add(light);
+  // scene.add(light.target);
+
+  // const helper = new THREE.DirectionalLightHelper(light);
+  // scene.add(helper);
+
+  var color, intensity, light, helper;
+
+  // SpotLights for lamps:
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(0, 9, -6.5);
+  light.target.position.set(0, 0, -6.5);
+  light.angle = 10;
   scene.add(light);
   scene.add(light.target);
-
-  const helper = new THREE.DirectionalLightHelper(light);
+  helper = new THREE.SpotLightHelper(light);
   scene.add(helper);
 
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(18, 9, -6.5);
+  light.target.position.set(18, 0, -6.5);
+  light.angle = 10;
+  scene.add(light);
+  scene.add(light.target);
+  helper = new THREE.SpotLightHelper(light);
+  scene.add(helper);
 
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(-18, 9, -6.5);
+  light.target.position.set(-18, 0, -6.5);
+  light.angle = 10;
+  scene.add(light);
+  scene.add(light.target);
+  helper = new THREE.SpotLightHelper(light);
+  scene.add(helper);
 
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(0, 9, -16.5);
+  light.target.position.set(0, 0, -16.5);
+  light.angle = 10;
+  scene.add(light);
+  scene.add(light.target);
+  helper = new THREE.SpotLightHelper(light);
+  scene.add(helper);
+
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(18, 9, -16.5);
+  light.target.position.set(18, 0, -16.5);
+  light.angle = 10;
+  scene.add(light);
+  scene.add(light.target);
+  helper = new THREE.SpotLightHelper(light);
+  scene.add(helper);
+
+  color = 0xFFFFFF;
+  intensity = 400;
+  light = new THREE.SpotLight(color, intensity);
+  light.position.set(-18, 9, -16.5);
+  light.target.position.set(-18, 0, -16.5);
+  light.angle = 10;
+  scene.add(light);
+  scene.add(light.target);
+  helper = new THREE.SpotLightHelper(light);
+  scene.add(helper);
 
   const boxWidth = 1;
   const boxHeight = 1;
@@ -117,6 +287,14 @@ function main() {
   geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
   loader = new THREE.TextureLoader();
+
+  texture = loader.load(
+    'resources/images/sky_texture.png',
+    () => {
+      texture.mapping = THREE.EquirectangularReflectionMapping;
+      texture.colorSpace = THREE.SRGBColorSpace;
+      scene.background = texture;
+    });
   // const texture = loader.load( 'resources/images/wall.jpg' );
   // texture.colorSpace = THREE.SRGBColorSpace;
 
@@ -124,36 +302,25 @@ function main() {
   // const material2 = new THREE.MeshPhongMaterial({color: 0x8844aa});
   // const material3 = new THREE.MeshPhongMaterial({color: 0xaa8844});
 
-  const materials = [
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-1.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-2.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-3.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-4.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-5.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-6.jpeg') }),
-  ];
+  // const materials = [
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-1.jpeg') }),
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-2.jpeg') }),
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-3.jpeg') }),
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-4.jpeg') }),
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-5.jpeg') }),
+  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-6.jpeg') }),
+  // ];
 
-  cubes = [];
+  // cubes = [];
 
-  // for (let i = 0; i < materials.length; i++) {
-  //   let x, y;
-  //   if (i < materials.length / 2) {
-  //     y = 0;
-  //   }
-  //   else{
-  //     y = 1;
-  //   }
-  //   // we want cubes 0, 1, 2 to be on y = _ and x = _
-  //   cubes.push(makeInstance(geometry, materials[i],  i-1, y));
+  // for (let i = 0; i < materials.length / 2; i++) {
+  //   let y = -1
+  //   cubes.push(makeInstance(geometry, materials[i], i - 1, y));
   // }
-  for (let i = 0; i < materials.length / 2; i++) {
-    let y = -1
-    cubes.push(makeInstance(geometry, materials[i], i - 1, y));
-  }
-  for (let i = materials.length / 2; i < materials.length; i++) {
-    let y = 2;
-    cubes.push(makeInstance(geometry, materials[i], i - (materials.length / 2) - 1, y));
-  }
+  // for (let i = materials.length / 2; i < materials.length; i++) {
+  //   let y = 2;
+  //   cubes.push(makeInstance(geometry, materials[i], i - (materials.length / 2) - 1, y));
+  // }
 
 
   // cubes = [
@@ -179,12 +346,12 @@ function render(time) {
   // cube.rotation.x = time;
   // cube.rotation.y = time;
 
-  cubes.forEach((cube, ndx) => {
-    const speed = 1 + ndx * .1;
-    const rot = time * speed;
-    cube.rotation.x = rot;
-    cube.rotation.y = rot;
-  });
+  // cubes.forEach((cube, ndx) => {
+  //   const speed = 1 + ndx * .1;
+  //   const rot = time * speed;
+  //   cube.rotation.x = rot;
+  //   cube.rotation.y = rot;
+  // });
 
   renderer.render(scene, camera);
 
