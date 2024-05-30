@@ -322,7 +322,7 @@ function main() {
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const fov = 75;
-  const aspect = 1;  // the canvas default
+  const aspect = 2;  // the canvas default
   const near = .1;
   const far = 200;
   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
