@@ -37,13 +37,13 @@ function addModel(objFile, mtlFile, scale, position, rotation) {
 }
 
 // The holder of books!!!
-addModel(
-  'resources/models/book/book.obj',
-  'resources/models/book/book.mtl',
-  [1, 1, 1],
-  [0, 0, 0],
-  [0, 0, 0],
-);
+// addModel(
+//   'resources/models/book/book.obj',
+//   'resources/models/book/book.mtl',
+//   [1, 1, 1],
+//   [0, 0, 0],
+//   [0, 0, 0],
+// );
 
 // Road
 addModel(
@@ -118,7 +118,183 @@ addModel(
   [0, -3.14 / 2, 0],
 );
 
+// Path
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10.4, 0, -6],
+  [0, 2, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10, 0, -4],
+  [0, -0.5, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10.5, 0, -2],
+  [0, 1.3, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10.5, 0, 0],
+  [0, .8, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10, 0, 2],
+  [0, -.3, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10, 0, 4],
+  [0, 0, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [10, 0, 6],
+  [0, 1, 0],
+);
 
+
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, -6],
+  [0, 0, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, -4],
+  [0, 0, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, -2],
+  [0, 0, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, 0],
+  [0, .9, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, 2],
+  [0, 2, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, 4],
+  [0, .3, 0],
+);
+addModel(
+  'resources/models/rocks/stone.obj',
+  'resources/models/rocks/stone.mtl',
+  [.4, .4, .4],
+  [8, 0, 6],
+  [0, -.5, 0],
+);
+
+// Gazebo:
+addModel(
+  'resources/models/gazebo/SM_Gazebo_02.obj',
+  'resources/models/gazebo/SM_Gazebo_02.mtl',
+  [.5, .5, .5],
+  [-14, 0, 13],
+  [0, 0, 0],
+);
+
+// Fountain
+addModel(
+  'resources/models/fountain/PUSHILIN_fountain.obj',
+  'resources/models/fountain/PUSHILIN_fountain.mtl',
+  [2.5, 2.5, 2.5],
+  [-8, 2, 3],
+  [0, 0, 0],
+);
+
+// Benchs
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-2, 0.5, 3],
+  [0, 0, 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-13, 0.5, 3],
+  [0, 3.14, 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-8, 0.5, 8],
+  [0, -3.14/2, 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-8, 0.5, -2],
+  [0, 3.14/2, 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-12, 0.5, 0],
+  [0, -3.14/3 + 3.3, 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-11.5, 0.5, 6.5],
+  [0, -(-3.14/3 + 3.3), 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-4, 0.5, 0],
+  [0, -(-3.14/4), 0],
+);
+addModel(
+  'resources/models/bench/model.obj',
+  'resources/models/bench/materials.mtl',
+  [2.5, 2.5, 2.5],
+  [-4, 0.5, 7],
+  [0, -.8, 0],
+);
 
 // {
 //   const objLoader = new OBJLoader();
@@ -322,6 +498,155 @@ function main() {
   const boxHeight = 1;
   const boxDepth = 1;
   geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+  
+  var material = new THREE.MeshBasicMaterial({ color: 0x7D7D7D });  // Red color
+
+  // Primary shapes:
+
+  const cube = new THREE.Mesh(geometry, material);
+  cube.scale.set(1, 4, 22);
+  cube.position.set(-19.5, 1, 9);
+  scene.add(cube);
+
+  const cube2 = new THREE.Mesh(geometry, material);
+  cube2.scale.set(1, 4, 22);
+  cube2.position.set(20, 1, 9);
+  scene.add(cube2);
+
+  const cube3 = new THREE.Mesh(geometry, material);
+  cube3.scale.set(1, 4, 40);
+  cube3.position.set(0, 1, 20);
+  cube3.rotation.set(0, 3.14/2, 0);
+  scene.add(cube3);
+
+  const cube4 = new THREE.Mesh(geometry, material);
+  cube4.scale.set(12, 4, 4);
+  cube4.position.set(-5.1, -1.99, 13);
+  cube4.rotation.set(0, 0, 0);
+  scene.add(cube4);
+
+  material = new THREE.MeshBasicMaterial({ color: 0x636363 });  // Red color
+
+  const cube5 = new THREE.Mesh(geometry, material);
+  cube5.scale.set(15, 4, 4);
+  cube5.position.set(9, -1.99, 0);
+  cube5.rotation.set(0, 3.14/2, 0);
+  scene.add(cube5);
+
+  material = new THREE.MeshBasicMaterial({ color: 0x8A6500 });  // Red color
+
+  const cube6 = new THREE.Mesh(geometry, material);
+  cube6.scale.set(.3, .3, 14);
+  cube6.position.set(7, 0, 0);
+  scene.add(cube6);
+
+  const cube7 = new THREE.Mesh(geometry, material);
+  cube7.scale.set(.3, .3, 14);
+  cube7.position.set(7, 1, 0);
+  scene.add(cube7);
+
+  const cube8 = new THREE.Mesh(geometry, material);
+  cube8.scale.set(.3, .3, 14);
+  cube8.position.set(11, 0, 0);
+  scene.add(cube8);
+
+  const cube9 = new THREE.Mesh(geometry, material);
+  cube9.scale.set(.3, .3, 14);
+  cube9.position.set(11, 1, 0);
+  scene.add(cube9);
+  material = new THREE.MeshBasicMaterial({ color: 0xAC7E00 });  // Red color
+
+  const cube10 = new THREE.Mesh(geometry, material);
+  cube10.scale.set(.25, 2, .25);
+  cube10.position.set(7, 0, -6);
+  scene.add(cube10);
+
+  const cube11 = new THREE.Mesh(geometry, material);
+  cube11.scale.set(.25, 2, .25);
+  cube11.position.set(7, 0, -4);
+  scene.add(cube11);
+
+  const cube12 = new THREE.Mesh(geometry, material);
+  cube12.scale.set(.25, 2, .25);
+  cube12.position.set(7, 0, -2);
+  scene.add(cube12);
+
+  const cube13 = new THREE.Mesh(geometry, material);
+  cube13.scale.set(.25, 2, .25);
+  cube13.position.set(7, 0, 0);
+  scene.add(cube13);
+
+  const cube14 = new THREE.Mesh(geometry, material);
+  cube14.scale.set(.25, 2, .25);
+  cube14.position.set(7, 0, 2);
+  scene.add(cube14);
+
+  const cube15 = new THREE.Mesh(geometry, material);
+  cube15.scale.set(.25, 2, .25);
+  cube15.position.set(7, 0, 4);
+  scene.add(cube15);
+
+  const cube16 = new THREE.Mesh(geometry, material);
+  cube16.scale.set(.25, 2, .25);
+  cube16.position.set(7, 0, 6);
+  scene.add(cube16);
+
+  const cube17 = new THREE.Mesh(geometry, material);
+  cube17.scale.set(.25, 2, .25);
+  cube17.position.set(11, 0, -6);
+  scene.add(cube17);
+
+  const cube18 = new THREE.Mesh(geometry, material);
+  cube18.scale.set(.25, 2, .25);
+  cube18.position.set(11, 0, -4);
+  scene.add(cube18);
+
+  const cube19 = new THREE.Mesh(geometry, material);
+  cube19.scale.set(.25, 2, .25);
+  cube19.position.set(11, 0, -2);
+  scene.add(cube19);
+
+  const cube20 = new THREE.Mesh(geometry, material);
+  cube20.scale.set(.25, 2, .25);
+  cube20.position.set(11, 0, 0);
+  scene.add(cube20);
+
+  const cube21 = new THREE.Mesh(geometry, material);
+  cube21.scale.set(.25, 2, .25);
+  cube21.position.set(11, 0, 2);
+  scene.add(cube21);
+
+  const cube22 = new THREE.Mesh(geometry, material);
+  cube22.scale.set(.25, 2, .25);
+  cube22.position.set(11, 0, 4);
+  scene.add(cube22);
+
+  const cube23 = new THREE.Mesh(geometry, material);
+  cube23.scale.set(.25, 2, .25);
+  cube23.position.set(11, 0, 6);
+  scene.add(cube23);
+
+  // Used chatgpt to quickly do help with this
+  const sphereRadius = 1;
+  const sphereWidthSegments = 32;
+  const sphereHeightSegments = 16;
+  const sphereGeometry = new THREE.SphereGeometry(sphereRadius, sphereWidthSegments, sphereHeightSegments);
+
+  const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xFF0000});
+
+  const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  sphere.scale.set(.5, .5, .5);
+  sphere.position.set(10, .05, 14);
+  scene.add(sphere);
+
+
+  const sphere2 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  sphere2.scale.set(.5, .5, .5);
+  sphere2.position.set(7, .05, 12);
+  scene.add(sphere2);
+
+
+  
 
   loader = new THREE.TextureLoader();
 
