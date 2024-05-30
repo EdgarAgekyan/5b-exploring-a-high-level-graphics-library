@@ -5,6 +5,9 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
+
 // let objLoader;
 // {
 //   objLoader = new OBJLoader();
@@ -37,8 +40,8 @@ function addModel(objFile, mtlFile, scale, position, rotation) {
 addModel(
   'resources/models/book/book.obj',
   'resources/models/book/book.mtl',
-  [1,1,1],
-  [0,0,0],
+  [1, 1, 1],
+  [0, 0, 0],
   [0, 0, 0],
 );
 
@@ -46,8 +49,8 @@ addModel(
 addModel(
   'resources/models/cottage/road.obj',
   'resources/models/cottage/road.mtl',
-  [.2,.1,.1],
-  [0,0,-12],
+  [.2, .1, .1],
+  [0, 0, -12],
   [0, 0, 0],
 );
 
@@ -55,8 +58,8 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [18,7,-6],
+  [3, 3, 3],
+  [18, 7, -6],
   [0, 0, 0],
 );
 
@@ -64,8 +67,8 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [0,7,-6],
+  [3, 3, 3],
+  [0, 7, -6],
   [0, 0, 0],
 );
 
@@ -73,8 +76,8 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [-18,7,-6],
+  [3, 3, 3],
+  [-18, 7, -6],
   [0, 0, 0],
 );
 
@@ -83,8 +86,8 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [18,7,-17],
+  [3, 3, 3],
+  [18, 7, -17],
   [0, 3.14, 0],
 );
 
@@ -92,8 +95,8 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [0,7,-17],
+  [3, 3, 3],
+  [0, 7, -17],
   [0, 3.14, 0],
 );
 
@@ -101,9 +104,18 @@ addModel(
 addModel(
   'resources/models/lamp/model.obj',
   'resources/models/lamp/materials.mtl',
-  [3,3,3],
-  [-18,7,-17],
+  [3, 3, 3],
+  [-18, 7, -17],
   [0, 3.14, 0],
+);
+
+// Pool
+addModel(
+  'resources/models/pool/SwimmingPool.obj',
+  'resources/models/pool/SwimmingPool.mtl',
+  [.4, .4, .4],
+  [9.5, -2.5, 13],
+  [0, -3.14 / 2, 0],
 );
 
 
@@ -130,6 +142,7 @@ function main() {
     canvas,
     alpha: true,
   });
+  RectAreaLightUniformsLib.init();
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const fov = 75;
@@ -155,7 +168,7 @@ function main() {
   loader = new THREE.TextureLoader();
 
 
-  
+
   var texture = loader.load('resources/images/grass.png');
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -213,6 +226,15 @@ function main() {
   // scene.add(helper);
 
   var color, intensity, light, helper;
+
+  // Directional Light to Simulate The Sun:
+  color = 0xFFFFFF;
+  intensity = 1;
+  light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(0, 10, 0);
+  light.target.position.set(-5, 0, 0);
+  scene.add(light);
+  scene.add(light.target);
 
   // SpotLights for lamps:
   color = 0xFFFFFF;
@@ -281,6 +303,21 @@ function main() {
   helper = new THREE.SpotLightHelper(light);
   scene.add(helper);
 
+
+
+  // RectArea Light for the Pool
+  color = 0x14A7E4;
+  intensity = 10;
+  const width = 14;
+  const height = 7;
+  light = new THREE.RectAreaLight(color, intensity, width, height);
+  light.position.set(10,0.01, 13);
+  light.rotation.x = THREE.MathUtils.degToRad(90);
+  scene.add(light);
+  helper = new RectAreaLightHelper(light);
+  light.add(helper);
+
+  
   const boxWidth = 1;
   const boxHeight = 1;
   const boxDepth = 1;
@@ -295,45 +332,7 @@ function main() {
       texture.colorSpace = THREE.SRGBColorSpace;
       scene.background = texture;
     });
-  // const texture = loader.load( 'resources/images/wall.jpg' );
-  // texture.colorSpace = THREE.SRGBColorSpace;
 
-  // const material1 = new THREE.MeshBasicMaterial({map: texture});
-  // const material2 = new THREE.MeshPhongMaterial({color: 0x8844aa});
-  // const material3 = new THREE.MeshPhongMaterial({color: 0xaa8844});
-
-  // const materials = [
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-1.jpeg') }),
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-2.jpeg') }),
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-3.jpeg') }),
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-4.jpeg') }),
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-5.jpeg') }),
-  //   new THREE.MeshBasicMaterial({ map: loadColorTexture('resources/images/flower-6.jpeg') }),
-  // ];
-
-  // cubes = [];
-
-  // for (let i = 0; i < materials.length / 2; i++) {
-  //   let y = -1
-  //   cubes.push(makeInstance(geometry, materials[i], i - 1, y));
-  // }
-  // for (let i = materials.length / 2; i < materials.length; i++) {
-  //   let y = 2;
-  //   cubes.push(makeInstance(geometry, materials[i], i - (materials.length / 2) - 1, y));
-  // }
-
-
-  // cubes = [
-  //   makeInstance(geometry, material1,  0),
-  //   makeInstance(geometry, material2, -2),
-  //   makeInstance(geometry, material3,  2),
-  // ];
-
-  // scene.add(cubes);
-
-
-  // scene.add(cube);
-  // scene.add(cubes);
 
   renderer.render(scene, camera);
 }
@@ -343,15 +342,6 @@ function render(time) {
   controls.update();
   time *= 0.001;  // convert time to seconds
 
-  // cube.rotation.x = time;
-  // cube.rotation.y = time;
-
-  // cubes.forEach((cube, ndx) => {
-  //   const speed = 1 + ndx * .1;
-  //   const rot = time * speed;
-  //   cube.rotation.x = rot;
-  //   cube.rotation.y = rot;
-  // });
 
   renderer.render(scene, camera);
 
@@ -369,7 +359,6 @@ light.position.set(-1, 2, 4);
 scene.add(light);
 
 function makeInstance(geometry, texture, x, y) {
-  // const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, texture);
   scene.add(cube);
